@@ -1,6 +1,5 @@
 import styled, { keyframes } from "styled-components";
 import main_bg from "../../../img/main_bg.webp";
-import main_bg2 from "../../../img/main_bg2.webp";
 import main_bg3 from "../../../img/main_bg3.webp";
 import navy_bg from "../../../img/navy_bg.jpeg";
 import mainbanner_program_img from "../../../img/mainbanner_program_img.png";

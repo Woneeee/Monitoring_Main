@@ -191,9 +191,9 @@ export const Compressor = () => {
       <Banner>
         <h1>공기압축기통합제어시스템</h1>
 
-        <CaseBtn>
-          <Link to={"/case/공기압축기통합제어시스템"}>고객사례 확인하기</Link>
-        </CaseBtn>
+        <Link to={"/case/공기압축기통합제어시스템"}>
+          <CaseBtn>고객사례 확인하기</CaseBtn>
+        </Link>
       </Banner>
 
       <NixIntro>

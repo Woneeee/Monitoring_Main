@@ -191,9 +191,9 @@ export const SmartFactory = () => {
       <Banner>
         <h1>스마트팩토리구축지원</h1>
 
-        <CaseBtn>
-          <Link to={"/case/스마트생태공장"}>고객사례 확인하기</Link>
-        </CaseBtn>
+        <Link to={"/case/스마트생태공장"}>
+          <CaseBtn>고객사례 확인하기</CaseBtn>
+        </Link>
       </Banner>
 
       <NixIntro>

@@ -191,9 +191,9 @@ export const Nixpack = () => {
       <Banner>
         <h1>에너지통합모니터링시스템</h1>
 
-        <CaseBtn>
-          <Link to={"/case/FEMS"}>고객사례 확인하기</Link>
-        </CaseBtn>
+        <Link to={"/case/FEMS"}>
+          <CaseBtn>고객사례 확인하기</CaseBtn>
+        </Link>
       </Banner>
 
       <NixIntro>
