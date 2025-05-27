@@ -1,0 +1,39 @@
+.Power_Monitoring_Main {
+  width: 100%;
+  background-color: pink;
+
+  .Monitoring_Inner {
+    display: flex;
+
+    .Left {
+      width: 63%;
+      height: 100%;
+      margin-right: 2%;
+      .Static {
+        width: 100%;
+        display: flex;
+        margin-bottom: 50px;
+
+        li {
+          width: 33%;
+          height: 150px;
+          margin-right: 12px;
+          background-color: salmon;
+          border-radius: 8px;
+        }
+      }
+    }
+
+    .Right {
+      width: 35%;
+      height: 100%;
+      li {
+        width: 100%;
+        height: 150px;
+        background-color: blue;
+        border-radius: 8px;
+        margin-bottom: 12px;
+      }
+    }
+  }
+}

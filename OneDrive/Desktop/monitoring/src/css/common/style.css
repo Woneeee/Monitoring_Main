@@ -1,0 +1,207 @@
+.Wrap {
+  background: #0d1023;
+  color: var(--white-color);
+  min-height: 100vh;
+}
+
+.Wrap.Light {
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  color: #333;
+}
+
+#Main {
+  margin-left: 100px;
+}
+
+.Sec {
+  padding: 50px;
+}
+
+.Sec .Top,
+.Sec .Mid {
+  margin-bottom: 20px;
+}
+
+.Sec .Inner .Item {
+  background: var(--card-color);
+  border-radius: 12px;
+}
+
+.Wrap.Light .Sec .Inner .Item {
+  background: #fff;
+  box-shadow: 3px 3px 8px #ddd;
+}
+
+.Title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  box-shadow: 0px 5px 5px -2px var(--wrap-color);
+}
+
+.Wrap.Light .Title {
+  box-shadow: 0px 3px 3px -2px #d5dee7;
+}
+
+.Title .Name {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.Title .Name img,
+.Excel img {
+  height: 40px;
+  background: #0d1123;
+  padding: 5px;
+
+  border-radius: 12px;
+}
+
+.Wrap.Light .Title .Name img,
+.Wrap.Light .Excel img {
+  background: linear-gradient(135deg, #d5dee7 0%, #e8ebf2 50%, #e2e7ed 100%),
+    linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.02) 50%,
+      rgba(255, 255, 255, 0.02) 61%,
+      rgba(0, 0, 0, 0.02) 73%
+    ),
+    linear-gradient(33deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
+  background-blend-mode: normal, color-burn;
+}
+
+.Text_ICO {
+  text-align: center;
+  border-radius: 12px;
+  color: var(--gray-color);
+  font-weight: 700;
+
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+  background: var(--wrap-color);
+}
+
+.Wrap.Light .Text_ICO {
+  background: linear-gradient(135deg, #d5dee7 0%, #e8ebf2 50%, #e2e7ed 100%),
+    linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.02) 50%,
+      rgba(255, 255, 255, 0.02) 61%,
+      rgba(0, 0, 0, 0.02) 73%
+    ),
+    linear-gradient(33deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.2) 100%);
+  background-blend-mode: normal, color-burn;
+}
+
+.Text_ICO.R {
+  color: var(--red-color);
+}
+.Text_ICO.G {
+  color: var(--green-color);
+}
+.Text_ICO.B {
+  color: var(--blue-color);
+}
+.Text_ICO.O {
+  color: var(--orange-color);
+}
+
+.Title .Name span {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.Title .State {
+  background: var(--blue-color);
+  font-size: 14px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  animation: State_ON 2s infinite;
+}
+
+@keyframes State_ON {
+  0% {
+    background: var(--blue-color);
+  }
+  50% {
+    background: var(--blue-color-2);
+  }
+  100% {
+    background: var(--blue-color);
+  }
+}
+
+.Desc {
+  padding: 20px;
+}
+
+.Percent {
+  text-align: center;
+  border-radius: 12px;
+  color: var(--white-color);
+  font-weight: 700;
+
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+  background: var(--wrap-color);
+}
+
+.Percent.R {
+  background: var(--red-color);
+}
+
+.Percent.B {
+  background: var(--blue-color);
+}
+
+.Unit {
+  color: #4d5463;
+  display: inline-block;
+}
+
+.EM {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.EM.G {
+  background: var(--green-color);
+  box-shadow: -1px -1px 3px var(--green-color-5) inset;
+}
+.EM.B {
+  background: var(--blue-color);
+  box-shadow: -1px -1px 3px var(--blue-color-4) inset;
+}
+.EM.R {
+  background: var(--red-color);
+  box-shadow: -1px -1px 3px var(--red-color-5) inset;
+}
+.EM.P {
+  background: var(--purple-color);
+  box-shadow: -1px -1px 3px var(--purple-color-5) inset;
+}
+.EM.W {
+  background: var(--white-color);
+  box-shadow: -1px -1px 3px var(--white-color-5) inset;
+}
+.EM.A {
+  background: var(--aqua-color);
+  box-shadow: -1px -1px 3px var(--green-color-5) inset;
+}
+
+textarea {
+  color: #ddd;
+}
+.Light textarea {
+  color: #333;
+}
+
+.Light footer {
+  background: #fff;
+}
