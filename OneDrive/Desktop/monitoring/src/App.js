@@ -17,6 +17,8 @@ const App = () => {
   const [deviceData, setDeviceData] = useState();
   const [staticData, setStaticData] = useState();
   const [timeUsageData, setTimeUsageData] = useState();
+  const [mainUsageData, setMainUsageData] = useState();
+  const [dummy, setDummy] = useState();
   const [yesterdayData, setYesterdayData] = useState();
   const [dayData, setDayData] = useState();
   const [monthData, setMonthData] = useState();
@@ -68,6 +70,12 @@ const App = () => {
         }
       );
       setTimeUsageData(res.data);
+      setMainUsageData(res.data[0].data);
+      const formatted = res.data[0].data.map((item) => ({
+        datetime: item.datetime,
+        kwh: item.kwh,
+      }));
+      setDummy(formatted);
     } catch (error) {
       console.error(error);
     }
@@ -187,13 +195,18 @@ const App = () => {
 
   // console.log(deviceData);
   // console.log(staticData);
-  console.log(timeUsageData);
+  // console.log(timeUsageData);
   // console.log(yesterdayData);
   // console.log(dayData);
   // console.log(monthData);
   // console.log(rankData);
   // console.log(efficiencyData);
   // console.log(summaryData);
+
+  // console.log(mainUsageData);
+  console.log(dummy);
+
+  const formatHour = (datetime) => datetime.slice(11, 16); // HH:MM 포맷
 
   const data = [
     { time: "00:00", usage: 5 },
@@ -215,13 +228,13 @@ const App = () => {
             </ul>
 
             <div className="NowUsage">
-              <LineChart width={1000} height={300} data={data}>
+              <LineChart width={1100} height={310} data={dummy}>
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="time" />
-                <YAxis />
-                <Tooltip />
+                <XAxis dataKey="datetime" tickFormatter={formatHour} />
+                <YAxis unit=" kWh" />
+                <Tooltip labelFormatter={formatHour} />
                 <Legend />
-                <Line type="monotone" dataKey="usage" stroke="#8884d8" />
+                <Line type="monotone" dataKey="kwh" stroke="#8884d8" />
               </LineChart>
             </div>
           </div>

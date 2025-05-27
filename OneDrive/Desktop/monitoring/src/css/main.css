@@ -1,12 +1,13 @@
 .Power_Monitoring_Main {
   width: 100%;
-  background-color: pink;
+  background-color: #f9f9f9;
+  padding: 50px 100px;
 
   .Monitoring_Inner {
     display: flex;
 
     .Left {
-      width: 63%;
+      width: 65%;
       height: 100%;
       margin-right: 2%;
       .Static {
@@ -25,7 +26,7 @@
     }
 
     .Right {
-      width: 35%;
+      width: 33%;
       height: 100%;
       li {
         width: 100%;
