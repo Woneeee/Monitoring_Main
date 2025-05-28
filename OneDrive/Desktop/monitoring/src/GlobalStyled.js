@@ -18,6 +18,7 @@ export const GlobalStyled = createGlobalStyle`
     color: #121216;
     font-family: "Noto Sans KR", sans-serif;
     background-color: #c6dff120;
+    letter-spacing: -1px;
     /* word-break: keep-all; */
   }
 

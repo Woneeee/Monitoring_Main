@@ -1,39 +1,206 @@
 .Power_Monitoring_Main {
   width: 100%;
-  background-color: #f9f9f9;
-  padding: 50px 100px;
+  padding: 50px 120px;
+  background-color: lavender;
 
   .Monitoring_Inner {
     display: flex;
 
     .Left {
-      width: 65%;
+      width: 68%;
       height: 100%;
       margin-right: 2%;
       .Static {
         width: 100%;
         display: flex;
-        margin-bottom: 50px;
+        margin-bottom: 40px;
 
         li {
           width: 33%;
-          height: 150px;
-          margin-right: 12px;
-          background-color: salmon;
+          height: 125px;
+          margin-right: 20px;
           border-radius: 8px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 기본 그림자 */
+          padding: 20px;
+          font-size: 22px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          &:last-child {
+            margin-right: 0;
+          }
+          .Value {
+            font-size: 28px;
+            font-weight: 500;
+            span {
+              font-size: 20px;
+              font-weight: 400;
+            }
+          }
+        }
+      }
+
+      .NowUsage {
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 기본 그림자 */
+        padding: 15px 15px;
+        .title {
+          font-size: 20px;
+          font-weight: 500;
+          margin-bottom: 20px;
+          display: flex;
+          align-items: center;
+          svg {
+            border-radius: 4px;
+            background-color: #ffffff;
+            padding: 5px;
+            font-size: 30px;
+          }
         }
       }
     }
 
     .Right {
-      width: 33%;
+      width: 30%;
       height: 100%;
       li {
         width: 100%;
-        height: 150px;
-        background-color: blue;
+        height: 168px;
         border-radius: 8px;
-        margin-bottom: 12px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 기본 그림자 */
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        .Today {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .Compare {
+            font-size: 22px;
+            display: flex;
+            align-items: center;
+            svg {
+              margin-right: 5px;
+              font-size: 35px;
+            }
+          }
+        }
+        .title {
+          font-size: 18px;
+          opacity: 0.8;
+          margin-bottom: 10px;
+        }
+        .title2 {
+          font-size: 16px;
+          opacity: 0.6;
+          margin-bottom: 10px;
+        }
+        .Value {
+          font-size: 25px;
+          font-weight: 500;
+          span {
+            font-size: 20px;
+            font-weight: 400;
+          }
+        }
+        .Value2 {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+
+  .Bottom_Inner {
+    width: 100%;
+    height: 350px;
+    display: flex;
+
+    li {
+      margin-right: 2%;
+      &:last-child {
+        margin-right: 0;
+      }
+      .title {
+        font-size: 18px;
+        font-weight: 500;
+        opacity: 0.8;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 8px;
+      }
+    }
+
+    .Bottom_Left {
+      width: 68%;
+      height: 100%;
+      display: flex;
+
+      .Top5 {
+        width: 400px;
+        height: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 기본 그림자 */
+        padding: 20px;
+        margin-right: 20px;
+
+        .Device {
+          width: 100%;
+          .Name {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .Rank {
+              width: 20px;
+              height: 20px;
+              border-radius: 50%;
+              background-color: lavender;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+          }
+        }
+      }
+
+      .Device_Summary {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 기본 그림자 */
+        padding: 20px;
+      }
+    }
+
+    .Bottom_Right {
+      width: 30%;
+      height: 100%;
+
+      .Efficiency {
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 기본 그림자 */
+        padding: 20px;
+        .title {
+          display: flex;
+          align-items: center;
+          svg {
+            border-radius: 4px;
+            background-color: #ffffff;
+            padding: 5px;
+            font-size: 30px;
+            margin-right: 10px;
+          }
+        }
       }
     }
   }
