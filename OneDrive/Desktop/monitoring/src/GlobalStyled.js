@@ -15,10 +15,11 @@ export const GlobalStyled = createGlobalStyle`
   }
 
   body {
-    color: #121216;
+    color: #ffffff;
     font-family: "Noto Sans KR", sans-serif;
     background-color: #c6dff120;
     letter-spacing: -1px;
+    
     /* word-break: keep-all; */
   }
 

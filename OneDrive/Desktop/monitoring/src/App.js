@@ -7,9 +7,13 @@ import { LuChartSpline } from "react-icons/lu";
 import {
   Bar,
   CartesianGrid,
+  Cell,
   ComposedChart,
   Legend,
   Line,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -32,6 +36,8 @@ const App = () => {
   const [summaryData, setSummaryData] = useState();
 
   const today = new Date().toISOString().slice(0, 10);
+  const yesterday = new Date(Date.now() - 86400000).toISOString().split("T")[0];
+  // console.log(today);
   const currentYearMonth = new Date().toISOString().slice(0, 7);
   const currentYear = new Date().getFullYear().toString();
 
@@ -241,13 +247,42 @@ const App = () => {
 
   const formatHour = (datetime) => datetime.slice(11, 16); // HH:MM 포맷
 
-  // const data = [
-  //   { time: "00:00", usage: 5 },
-  //   { time: "01:00", usage: 6 },
-  //   { time: "02:00", usage: 8 },
-  //   { time: "03:00", usage: 4 },
-  //   { time: "04:00", usage: 7 },
-  // ];
+  const Top5_Device = rankData && rankData.slice(1);
+  const Top5_Device_Name =
+    Top5_Device && Top5_Device.map((data) => data.deviceName);
+
+  const Top5_Summary =
+    summaryData &&
+    summaryData.filter((data) => Top5_Device_Name.includes(data.deviceName));
+
+  const Top5_Summary_Array = Top5_Summary && [
+    Top5_Summary[0],
+    Top5_Summary[3],
+    Top5_Summary[2],
+    Top5_Summary[1],
+  ];
+
+  const yesterdayRatio =
+    (efficiencyData &&
+      efficiencyData[0].values.find((item) => item.date === yesterday)
+        ?.ratio) ||
+    0;
+
+  const ratio = Math.min(Math.max(yesterdayRatio, 1), 4); // 1 ~ 4로 제한
+
+  const data = [
+    { yesterdayRatio: ratio - 1 }, // 차트에 들어갈 상대값 (0 ~ 3)
+    { yesterdayRatio: 4 - ratio }, // 나머지 값
+  ];
+
+  const COLORS = [
+    ratio >= 3
+      ? "#f87171" // 빨강 (3 이상은 나쁨)
+      : ratio >= 2
+      ? "#facc15" // 노랑 (2 이상은 보통)
+      : "#4ade80", // 초록 (1~2 사이면 좋음)
+    "#e5e7eb", // 회색: 나머지 비율
+  ];
 
   return (
     staticData &&
@@ -288,7 +323,9 @@ const App = () => {
                     <XAxis
                       dataKey="datetime"
                       tickFormatter={(dt) => dt.slice(11, 16)}
+                      tick={{ fill: "#ffffff", fontSize: 15 }}
                     />
+
                     {/* 왼쪽 Y축: 시간별 전력량(kwh), 범위 0~3000 */}
                     <YAxis
                       yAxisId="left"
@@ -305,6 +342,7 @@ const App = () => {
                       ticks={[0, 6000, 12000, 18000, 25000]}
                       stroke="#82ca9d"
                     />
+
                     <Tooltip labelFormatter={(dt) => dt.slice(11, 16)} />
                     <Legend />
 
@@ -348,8 +386,8 @@ const App = () => {
                           timeUsageData[0].totalKwh -
                             timeUsageData[0].totalLastDayKwh >=
                           0
-                            ? "#234ae7"
-                            : "#e7233a",
+                            ? "#e7233a"
+                            : "#234ae7",
                       }}
                     >
                       {timeUsageData[0].totalKwh -
@@ -389,7 +427,7 @@ const App = () => {
                       className="Compare"
                       style={{
                         color:
-                          weekData - lastWeekData >= 0 ? "#234ae7" : "#e7233a",
+                          weekData - lastWeekData >= 0 ? "#e7233a" : "#234ae7",
                       }}
                     >
                       {weekData - lastWeekData >= 0 ? (
@@ -426,8 +464,8 @@ const App = () => {
                         color:
                           dayData[0].totalKwh - dayData[0].totalLastMonthKwh >=
                           0
-                            ? "#234ae7"
-                            : "#e7233a",
+                            ? "#e7233a"
+                            : "#234ae7",
                       }}
                     >
                       {dayData[0].totalKwh - dayData[0].totalLastMonthKwh >=
@@ -457,25 +495,103 @@ const App = () => {
             <ul className="Inner Bottom_Inner">
               <li className="Bottom_Left">
                 <div className="Top5">
-                  <div className="title">오늘의 전력 소모 Top 5</div>
-                  <ul className="Device">
-                    {rankData.map((data, idx) => (
-                      <li key={idx} className="Name">
-                        <div className="Rank">{idx + 1}&nbsp;&nbsp;</div>
+                  <div className="title">실시간 전력 소모 Top 4</div>
+                  <ul className="Rank">
+                    {Top5_Device.map((data, idx) => (
+                      <li key={idx} className="Rank_Device">
+                        <div className="Rank_Num">{idx + 1}&nbsp;&nbsp;</div>
                         <div>{data.deviceName}</div>
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="Device_Summary">
-                  <div className="title">Top 5 장비 전력 사용량</div>
+                  <div className="title">Top 4 장비 전력 사용량</div>
+
+                  <table className="Device_Summary_Table">
+                    <thead>
+                      <tr>
+                        <th>순위</th>
+                        <th>장치명</th>
+                        <th>오늘</th>
+                        <th>어제</th>
+                        <th>이번주</th>
+                        <th>지난주</th>
+                        <th>이번달</th>
+                        <th>지난달</th>
+                        <th>총 사용량</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {Top5_Summary_Array.map((data, idx) => (
+                        <tr key={idx}>
+                          <td className="Rank_Num">{idx + 1}</td>
+                          <td>{data.deviceName}</td>
+                          <td>{data.dailyKwh.toLocaleString()}</td>
+                          <td>{data.yesterdayKwh.toLocaleString()}</td>
+                          <td>{data.weeklyKwh.toLocaleString()}</td>
+                          <td>{data.lastMonthlyKwh.toLocaleString()}</td>
+                          <td>{data.monthlyKwh.toLocaleString()}</td>
+                          <td>{data.lastMonthlyKwh.toLocaleString()}</td>
+                          <td>{data.totalKwh.toLocaleString()}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
               </li>
               <li className="Bottom_Right">
                 <div className="Efficiency">
                   <div className="title">
                     <IoPieChartOutline />
-                    효율비
+                    전일 효율비
+                  </div>
+
+                  <div className="gauge-container">
+                    <ResponsiveContainer width="100%" height="100%">
+                      <PieChart>
+                        <Pie
+                          data={data}
+                          startAngle={180}
+                          endAngle={0}
+                          innerRadius="70%"
+                          outerRadius="100%"
+                          dataKey="yesterdayRatio"
+                          stroke="none"
+                          paddingAngle={3}
+                        >
+                          {data.map((_, index) => (
+                            <Cell key={`cell-${index}`} fill={COLORS[index]} />
+                          ))}
+                        </Pie>
+                      </PieChart>
+                    </ResponsiveContainer>
+
+                    <div className="gauge-label">
+                      <div className="gauge-value">
+                        {yesterdayRatio.toFixed(2)}
+                      </div>
+                      <div className="gauge-target">효율지표 (1이 적정)</div>
+                    </div>
+
+                    <div className="gauge-legend">
+                      <div className="legend-item">
+                        <div className="legend-color good"></div>
+                        <span>양호</span>
+                      </div>
+                      <div className="legend-item">
+                        <div className="legend-color warning"></div>
+                        <span>주의</span>
+                      </div>
+                      <div className="legend-item">
+                        <div className="legend-color danger"></div>
+                        <span>경고</span>
+                      </div>
+                      <div className="legend-item">
+                        <div className="legend-color other"></div>
+                        <span>그외</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </li>
