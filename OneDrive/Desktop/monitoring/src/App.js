@@ -149,9 +149,6 @@ const App = () => {
         .reduce((sum, item) => sum + item.kwh, 0);
 
       setLastWeekData(totalKwhLastWeek); // ← 필요 시 state로 따로 관리
-
-      // console.log("이번 주:", totalKwhThisWeek.toLocaleString(), "kWh");
-      // console.log("전주:", totalKwhLastWeek.toLocaleString(), "kWh");
     } catch (error) {
       console.error(error);
     }
@@ -238,7 +235,7 @@ const App = () => {
   // console.log(dayData);
   // console.log(monthData);
   // console.log(rankData);
-  console.log(efficiencyData);
+  // console.log(efficiencyData);
   // console.log(summaryData);
 
   // console.log(dummy);
